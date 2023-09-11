@@ -1,0 +1,28 @@
+#+TITLE: Blitzkrieg repository for Guix
+
+This is Blitzkieg software repository for the
+[[https://www.gnu.org/software/guix/][GNU Guix]] package manager,
+which packages some software which may not be included in the official
+distribution for ethical or policy-related reasons. Also some packages
+are based on official ones, but include changes which do not compatible
+with Guix project's policy.
+
+* Installation
+
+This repository can be installed as a
+[[https://www.gnu.org/software/guix/manual/en/html_node/Channels.html][Guix channel]].
+To do so, add it to =~/.config/guix/channels.scm=:
+
+#+BEGIN_SRC scheme
+  (cons* (channel
+          (name 'blitzkrieg)
+          (url "https://git.blitzkrieg.dev/channel/")
+          (introduction
+           (make-channel-introduction
+            ""
+            (openpgp-fingerprint
+             "9E23 D5BC AEB7 E364 7321  4A00 C3A7 8EB3 FEFE 6C04"))))
+         %default-channels)
+#+END_SRC
+
+Then run =guix pull=.
