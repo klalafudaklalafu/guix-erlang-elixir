@@ -2,6 +2,7 @@
 ;; Elixir package.
 
 (define-module (blitzkrieg packages elixir)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages)
@@ -9,6 +10,7 @@
   #:use-module (gnu packages)
   #:use-module (gnu packages version-control)
   #:use-module ((gnu packages elixir) #:prefix gnu:)
+  #:use-module (blitzkrieg build-system mix)
   #:use-module (blitzkrieg packages erlang))
 
 (define-public elixir
@@ -47,3 +49,27 @@
                   (invoke "make")))))))
       (inputs
        (list erlang git)))))
+
+;; stolen from https://git.sr.ht/~sokolov/guix/
+(define-public elixir-hex
+  (package
+    (name "elixir-hex")
+    (version "2.0.5")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/hexpm/hex")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1kvczwvij58kgkhak68004ap81pl26600bczg21mymy2sypkgxmj"))))
+    (build-system mix-build-system)
+    (arguments
+     ;; Avoiding circular dependency
+     (list #:hex #f
+           #:tests? #f))
+    (home-page "https://hex.pm")
+    (synopsis "Package manager for the Erlang VM")
+    (description #f)
+    (license license:asl2.0)))
