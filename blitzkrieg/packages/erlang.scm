@@ -15,7 +15,7 @@
     (package/inherit gnu:erlang
       (name "erlang")
       (version "26.1")
-      (source (origint
+      (source (origin
                 (method url-fetch)
                 (uri (string-append uri-prefix version "/otp_src_" version ".tar.gz"))
                 (sha256
