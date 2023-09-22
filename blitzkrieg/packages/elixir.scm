@@ -28,6 +28,7 @@
           (base32 "19vhci9dxdm3sb937ba3np5gadgfcsnrnc30n17c4xk556mk473r"))))
       (arguments
        (substitute-keyword-arguments (package-arguments gnu:elixir)
+         ((#:tests? _ #f) #f)
          ((#:phases phases)
           #~(modify-phases #$phases
               (add-after 'replace-paths 'pre-install-source
