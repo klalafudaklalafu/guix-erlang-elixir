@@ -14,13 +14,13 @@
   (let ((uri-prefix "https://github.com/erlang/otp/releases/download/OTP-"))
     (package/inherit gnu:erlang
       (name "erlang")
-      (version "26.1.1")
+      (version "26.1.2")
       (source (origin
                 (method url-fetch)
                 (uri (string-append uri-prefix version "/otp_src_" version ".tar.gz"))
                 (sha256
                  (base32
-                  "0mxgc39zfah9cl56wwbfcmczja2dm745nbifxxrmrwffhzk5dpih"))
+                  "089r67h0q3gkqn5sags58c16m9rgmgmspm97c3k8f7sglprlq1zi"))
                 (patches (search-patches "erlang-man-path.patch"))))
       (arguments
        (substitute-keyword-arguments (package-arguments gnu:erlang)
@@ -43,4 +43,4 @@
              (uri (string-append uri-prefix version "/otp_doc_man_" version ".tar.gz"))
              (sha256
               (base32
-               "1drdg6dzm58i228zn6r5v923b3yh1ygynypfk5j1jdq04sxqqbbr")))))))))
+               "0g1qv8bx25f92qngz60xyakgj4ny18z5b62x4wcfs83k7gyk3mgn")))))))))
