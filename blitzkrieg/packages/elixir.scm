@@ -16,7 +16,7 @@
          (elixir-erl-compiler-path-orig (string-append elixir-erl-compiler-path ".orig")))
     (package/inherit gnu:elixir
       (name "elixir")
-      (version "1.15.6")
+      (version "1.15.7")
       (source
        (origin
          (method git-fetch)
@@ -25,10 +25,9 @@
                (commit (string-append "v" version))))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "19vhci9dxdm3sb937ba3np5gadgfcsnrnc30n17c4xk556mk473r"))))
+          (base32 "0yfp16fm8v0796f1rf1m2r0m2nmgj3qr7478483yp1x5rk4xjrz8"))))
       (arguments
        (substitute-keyword-arguments (package-arguments gnu:elixir)
-         ((#:tests? _ #f) #f)
          ((#:phases phases)
           #~(modify-phases #$phases
               (add-after 'replace-paths 'pre-install-source
